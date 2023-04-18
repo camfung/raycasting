@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="p5.sound.min.js" type="javaScript">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/libraries/p5.sound.min.js" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

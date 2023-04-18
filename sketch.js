@@ -3,6 +3,8 @@ let d = 100;
 let v = 10; 
 let player;
 let updatePlayer = false
+let width;
+let height;
 
 function setupWalls() {
   // make walls surrounding the canvas
@@ -13,11 +15,11 @@ function setupWalls() {
 }
 
 function setup() {
-  width = window.innerWidth; 
+  width = window.innerWidth;
   height = window.innerHeight;
   player = new Player(width/2,height/2, 360);
   setupWalls();
- createCanvas(width, height);
+  createCanvas(width, height);
 }
 
 function draw() {
@@ -30,11 +32,8 @@ function draw() {
     boundary.update(d);
     boundary.show();
   }
+
   player.updateRays(boundaries);
-    if (d > width-100 || d < 100) {
-    v *= -1;
-  }
-  d += v;
 }
 
 function keyPressed() {

@@ -27,11 +27,10 @@ class Player {
               } 
             }
             if (closest) {
-                if (closest) {
-                    stroke(ray.color, 100);
-                    line(this.pos.x, this.pos.y, closest.x, closest.y);
-                  }
-            }
+                stroke(ray.color, 100);
+                ellipse()
+                // line(this.pos.x, this.pos.y, closest.x, closest.y);
+              }
           }
     }
 }

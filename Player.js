@@ -1,7 +1,10 @@
 class Player {
-    constructor(x, y) {
+    constructor(x, y, fov) {
         this.pos = createVector(x, y);
         this.rays = []; 
+        for (let i = 0; i < fov; i+=.5) {
+          this.rays.push( new Ray( this.pos, radians(i) ) );
+        }
     }
     
     update(x, y) {

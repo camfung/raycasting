@@ -8,10 +8,17 @@ let height;
 
 function setupWalls() {
   // make walls surrounding the canvas
-  boundaries.push(new Boundary(0, 0, width, 0));
-  boundaries.push(new Boundary(width, 0, width, height));
-  boundaries.push(new Boundary(width, height, 0, height));
-  boundaries.push(new Boundary(0, height, 0, 0));
+  // boundaries.push(new Boundary(0, 0, width, 0));
+  // boundaries.push(new Boundary(width, 0, width, height));
+  // boundaries.push(new Boundary(width, height, 0, height));
+  // boundaries.push(new Boundary(0, height, 0, 0));
+
+  // make a box 
+  boundaries.push(new Boundary(100, 100, 100, 200));
+  boundaries.push(new Boundary(100, 200, 200, 200));
+  boundaries.push(new Boundary(200, 200, 200, 100));
+  boundaries.push(new Boundary(200, 100, 100, 100));
+
 }
 
 function setup() {

@@ -29,7 +29,7 @@ class Player {
             if (closest) {
                 stroke(ray.color, 100);
                 ellipse()
-                // line(this.pos.x, this.pos.y, closest.x, closest.y);
+                line(this.pos.x, this.pos.y, closest.x, closest.y);
               }
           }
     }

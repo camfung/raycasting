@@ -2,12 +2,13 @@ class Player {
     constructor(x, y, fov) {
         this.pos = createVector(x, y);
         this.rays = []; 
-        for (let i = 0; i < fov; i+=.5) {
+        for (let i = 0; i < fov; i+=2) {
           this.rays.push( new Ray( this.pos, radians(i) ) );
         }
     }
     
     update(x, y) {
+        circle(x,y, 10)
         this.pos.x = x; 
         this.pos.y = y; 
     }
@@ -33,4 +34,10 @@ class Player {
               }
           }
     }
+
+    move(dx, dy) {
+        // Update the player's position
+        this.pos.x += dx;
+        this.pos.y += dy;
+      }
 }

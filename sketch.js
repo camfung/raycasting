@@ -1,52 +1,43 @@
-let boundaries = []; 
-let d = 100; 
-let v = 10; 
-let player;
-let updatePlayer = false
-let width;
-let height;
-
-function setupWalls() {
-  // make walls surrounding the canvas
-  // boundaries.push(new Boundary(0, 0, width, 0));
-  // boundaries.push(new Boundary(width, 0, width, height));
-  // boundaries.push(new Boundary(width, height, 0, height));
-  // boundaries.push(new Boundary(0, height, 0, 0));
-
-  // make a box 
-  boundaries.push(new Boundary(100, 100, 100, 200));
-  boundaries.push(new Boundary(100, 200, 200, 200));
-  boundaries.push(new Boundary(200, 200, 200, 100));
-  boundaries.push(new Boundary(200, 100, 100, 100));
-
-}
-
-function setup() {
-  width = window.innerWidth;
-  height = window.innerHeight;
-  player = new Player(width/2,height/2, 360);
-  setupWalls();
-  createCanvas(width, height);
-}
-
-function draw() {
-  background(0);
-  if (updatePlayer) {
-    player.update(mouseX, mouseY)
+class Player {
+  constructor(x, y, fov) {
+      this.pos = createVector(x, y);
+      this.rays = []; 
+      for (let i = 0; i < fov; i+=2) {
+        this.rays.push( new Ray( this.pos, radians(i) ) );
+      }
+  }
+  
+  update(x, y) {
+      circle(x,y, 10)
+      this.pos.x = x; 
+      this.pos.y = y; 
   }
 
-  for (boundary of boundaries) {
-    boundary.update(d);
-    boundary.show();
+  updateRays(boundaries) {
+      for (let ray of this.rays) {
+          let record = Infinity;
+          let closest = null;
+          for (boundary of boundaries) {
+            const pt = ray.cast(boundary); 
+            if (pt) {
+              const d = p5.Vector.dist(this.pos, pt);
+              if (d < record) {
+                record = d;
+                closest = pt;
+              }
+            } 
+          }
+          if (closest) {
+              stroke(ray.color, 100);
+              ellipse()
+              line(this.pos.x, this.pos.y, closest.x, closest.y);
+            }
+        }
   }
 
-  player.updateRays(boundaries);
+  move(dx, dy) {
+      // Update the player's position
+      this.pos.x += dx;
+      this.pos.y += dy;
+    }
 }
-
-function keyPressed() {
-  // key code for space is 32
-  if (keyCode == 32) {
-    updatePlayer = !updatePlayer;
-  }
-}
-
